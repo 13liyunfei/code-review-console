@@ -1,0 +1,11 @@
+server:
+  port: 8081
+
+# ===== 代码审查引擎（被代理的微服务）地址 =====
+# 真实环境引擎默认 8080；本机或容器部署时按实际地址修改
+engine:
+  base-url: http://localhost:8080
+
+spring:
+  application:
+    name: code-review-console
