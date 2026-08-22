@@ -10,9 +10,9 @@ const routes = [
     component: Layout,
     children: [
       { path: '', redirect: '/dashboard' },
-      { path: 'dashboard', name: 'dashboard', component: Dashboard, meta: { title: '仪表盘' } },
-      { path: 'skills', name: 'skills', component: SkillsMarket, meta: { title: 'Skills 市场' } },
-      { path: 'knowledge', name: 'knowledge', component: Knowledge, meta: { title: '团队知识' } }
+      { path: 'dashboard', name: 'dashboard', component: Dashboard, meta: { title: 'menu.dashboard' } },
+      { path: 'skills', name: 'skills', component: SkillsMarket, meta: { title: 'menu.skills' } },
+      { path: 'knowledge', name: 'knowledge', component: Knowledge, meta: { title: 'menu.knowledge' } }
     ]
   }
 ]
