@@ -1,52 +1,61 @@
-# code-review-console（管理控制台）
+# code-review-console (Management Console)
 
-`code-review-agent` 的配套管理控制台（Spring Boot 微服务，默认端口 **8081**）。
+> [English](README.md) | [中文](README.zh-CN.md)
 
-- 以 `RestTemplate` 反向代理审查引擎（`code-review-agent`）的 `/api/admin/*` 管理接口；
-- 托管前端（Vue 3 + ElementPlus）静态资源（`src/main/resources/static/`）；
-- 多租户隔离：转发时自动携带 `X-Team-Id` 头。
+The companion management console for the [code-review-agent](https://github.com/13liyunfei/code-review-agent) engine (Spring Boot microservice, default port **8081**).
 
-> 本仓库为独立开源仓库，需与 [code-review-agent](https://github.com/your-org-or-user/code-review-agent) 配合使用。
+- Proxies the engine's `/api/admin/*` management endpoints via `RestTemplate`;
+- Hosts the Vue 3 + ElementPlus frontend static assets (`src/main/resources/static/`);
+- **Multi-tenancy**: automatically forwards the `X-Team-Id` header when calling the engine.
 
-## 技术栈
+> Standalone open-source repository — pair it with the engine repository `code-review-agent`.
 
-- Java 17、Spring Boot 3.3.4
-- 前端：Vue 3 + Vite + ElementPlus（源码位于 `frontend/`）
+## Tech Stack
 
-## 快速开始
+- Java 17, Spring Boot 3.3.4
+- Frontend: Vue 3 + Vite + ElementPlus (source under `frontend/`)
+
+## Quick Start
 
 ```bash
-# 1) 启动审查引擎（另一仓库 code-review-agent，默认 :8080）
-#    参见 code-review-agent 的 README
+# 1) Start the review engine first (code-review-agent, default :8080)
+#    See the code-review-agent README
 
-# 2) 启动控制台（默认 :8081）
+# 2) Start the console (default :8081)
 cd code-review-console
 ./mvnw spring-boot:run
-# 浏览器打开 http://localhost:8081
+# Open http://localhost:8081 in your browser
 ```
 
-### 指向审查引擎
+### Point the console at the engine
 
-控制台通过配置项 `engine.base-url` 访问引擎，可用环境变量覆盖：
+The console accesses the engine via the `engine.base-url` property (overridable by env var):
 
 ```bash
 ENGINE_BASE_URL=http://localhost:8080 ./mvnw spring-boot:run
-# 或在 application.yml 中修改 engine.base-url
+# Or edit engine.base-url in application.yml
 ```
 
-默认 `http://localhost:8080`；容器/远程部署时改为实际地址。
+Defaults to `http://localhost:8080`; use the actual address for container/remote deployments.
 
-## 前端开发（可选）
+## Frontend Development (Optional)
 
-控制台已内置一份构建好的前端静态资源，开箱即用。如需自行修改前端：
+The console ships with a pre-built frontend, ready to use. To develop the frontend yourself:
 
 ```bash
 cd frontend
 npm install
-npm run dev        # Vite 开发服务器，/api 代理到 8081
-npm run build      # 构建产物输出到 ../src/main/resources/static
+npm run dev        # Vite dev server, /api proxied to 8081
+npm run build      # Output goes to ../src/main/resources/static
 ```
+
+### Internationalization (i18n)
+
+The console UI supports **中文 / English** switching. Click the language button in the top-right corner of the header; the choice is persisted in `localStorage` (`console-lang`).
+
+- Language packs: `frontend/src/i18n/locales/zh.js` and `en.js`
+- i18n wiring: `frontend/src/i18n/index.js` (vue-i18n 9, legacy mode disabled)
 
 ## License
 
-本项目以 [MIT 协议](LICENSE) 开源。© 2026 liyunfei2030。
+Open-sourced under the [MIT license](LICENSE). © 2026 code-review-agent contributors.
