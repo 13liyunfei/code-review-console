@@ -49,4 +49,4 @@ npm run build      # 构建产物输出到 ../src/main/resources/static
 
 ## License
 
-本项目以 [MIT 协议](LICENSE) 开源。© 2026 code-review-agent contributors。
+本项目以 [MIT 协议](LICENSE) 开源。© 2026 13liyunfei。
