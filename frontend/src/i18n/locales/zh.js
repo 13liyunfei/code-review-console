@@ -9,6 +9,7 @@ export default {
   menu: {
     dashboard: '仪表盘',
     skills: 'Skills 市场',
+    agents: '自定义 Agent',
     knowledge: '团队知识'
   },
   dash: {
@@ -66,5 +67,50 @@ export default {
     delete: '删除',
     msg: { required: '请选择文件或粘贴文字稿', added: '已入库', deleted: '已删除' }
   },
-  cats: { security: '安全', logic: '逻辑', performance: '性能', style: '规范', architecture: '架构' }
+  cats: { security: '安全', logic: '逻辑', performance: '性能', style: '规范', architecture: '架构' },
+  agents: {
+    count: '共 {n} 个业务方自定义审查 Agent（团队级，随 PR 并行审查）',
+    teamHint: '当前团队: default',
+    add: '+ 新增自定义 Agent',
+    edit: '编辑',
+    delete: '删除',
+    editTitle: '编辑自定义 Agent',
+    addTitle: '新增自定义 Agent',
+    cancel: '取消',
+    submit: '提交',
+    col: {
+      name: '名称',
+      focus: '审查要点',
+      severity: '严重级别',
+      enabled: '启用',
+      version: '版本',
+      updated: '更新时间',
+      action: '操作'
+    },
+    form: {
+      name: 'Agent 名称',
+      description: '说明',
+      focus: '审查要点（每行一条）',
+      focusPlaceholder: '每行一个审查要点，例如：\n检查是否存在硬编码密钥/密码\n检查是否使用 SELECT *\n检查资金类操作是否有权限校验',
+      severity: '严重级别偏置',
+      enabled: '启用'
+    },
+    securityHeader: '安全设计（Prompt 注入防护）',
+    securityHint: '业务方自定义 Agent 采用「声明式骨架 + 内容槽」设计：系统指令骨架由引擎硬编码且不可覆盖，业务方只能填写审查要点等内容槽。',
+    securityList: [
+      '写库前注入预检：名称 / 说明 / 要点命中越权句式（如「忽略以上指令」）直接拒绝保存（400）',
+      '审查时 diff 内容中的可疑指令会被标注为 [INJECTION-RISK]，不会切换角色执行',
+      '可降级：自定义 Agent 异常 / 超时 / 无模型时返回空结果，不影响内置 5 个 Agent',
+      '可追踪可回放：每次展开 / 结果都写入轨迹 JSONL（agent.custom.expanded 事件），支持断点续跑'
+    ],
+    confirmDelete: '确定删除自定义 Agent「{name}」？',
+    msg: {
+      toggled: '已更新启停状态',
+      deleted: '已删除',
+      updated: '已保存修改',
+      added: '已新增自定义 Agent',
+      required: '请填写 Agent 名称',
+      fail: '操作失败'
+    }
+  }
 }

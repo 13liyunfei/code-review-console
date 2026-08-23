@@ -17,6 +17,9 @@
         <el-menu-item index="/skills">
           <el-icon><Files /></el-icon><span>{{ t('menu.skills') }}</span>
         </el-menu-item>
+        <el-menu-item index="/agents">
+          <el-icon><User /></el-icon><span>{{ t('menu.agents') }}</span>
+        </el-menu-item>
         <el-menu-item index="/knowledge">
           <el-icon><Folder /></el-icon><span>{{ t('menu.knowledge') }}</span>
         </el-menu-item>
@@ -40,7 +43,7 @@
 import { useRoute } from 'vue-router'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { DataLine, Files, Folder } from '@element-plus/icons-vue'
+import { DataLine, Files, Folder, User } from '@element-plus/icons-vue'
 
 const { t, locale } = useI18n()
 const route = useRoute()

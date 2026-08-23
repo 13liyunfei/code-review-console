@@ -18,3 +18,10 @@ export const uploadKnowledge = (formData) =>
 export const deleteKnowledge = (id) => api.delete(`/api/knowledge/${id}`)
 
 export const getStats = () => api.get('/api/stats').then((r) => r.data)
+
+export const getCustomAgents = () => api.get('/api/agents').then((r) => r.data)
+export const createCustomAgent = (payload) => api.post('/api/agents', payload)
+export const updateCustomAgent = (id, payload) => api.put(`/api/agents/${id}`, payload)
+export const deleteCustomAgent = (id) => api.delete(`/api/agents/${id}`)
+export const toggleCustomAgent = (id, enabled) =>
+  api.post(`/api/agents/${id}/toggle`, { enabled })

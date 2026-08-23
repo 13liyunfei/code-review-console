@@ -9,6 +9,7 @@ export default {
   menu: {
     dashboard: 'Dashboard',
     skills: 'Skills Market',
+    agents: 'Custom Agents',
     knowledge: 'Team Knowledge'
   },
   dash: {
@@ -66,5 +67,50 @@ export default {
     delete: 'Delete',
     msg: { required: 'Please select a file or paste a transcript', added: 'Stored', deleted: 'Deleted' }
   },
-  cats: { security: 'Security', logic: 'Logic', performance: 'Performance', style: 'Style', architecture: 'Architecture' }
+  cats: { security: 'Security', logic: 'Logic', performance: 'Performance', style: 'Style', architecture: 'Architecture' },
+  agents: {
+    count: '{n} business-defined custom review agents (team-level, run in parallel per PR)',
+    teamHint: 'Team: default',
+    add: '+ Add Custom Agent',
+    edit: 'Edit',
+    delete: 'Delete',
+    editTitle: 'Edit Custom Agent',
+    addTitle: 'Add Custom Agent',
+    cancel: 'Cancel',
+    submit: 'Submit',
+    col: {
+      name: 'Name',
+      focus: 'Focus Points',
+      severity: 'Severity',
+      enabled: 'Enabled',
+      version: 'Version',
+      updated: 'Updated At',
+      action: 'Action'
+    },
+    form: {
+      name: 'Agent name',
+      description: 'Description',
+      focus: 'Focus points (one per line)',
+      focusPlaceholder: 'One focus point per line, e.g.:\ncheck for hardcoded keys/passwords\ncheck for SELECT * usage\ncheck permission guard on money operations',
+      severity: 'Severity bias',
+      enabled: 'Enabled'
+    },
+    securityHeader: 'Security Design (Prompt-Injection Defense)',
+    securityHint: 'Custom agents use a "declarative skeleton + content slots" design: the system-instruction skeleton is hardcoded by the engine and cannot be overridden; business users can only fill in content slots such as focus points.',
+    securityList: [
+      'Pre-persist injection check: names/descriptions/points hitting privilege-escalation phrases (e.g. "ignore previous instructions") are rejected with HTTP 400',
+      'During review, suspicious instructions inside the diff are annotated as [INJECTION-RISK] and never switch the agent role',
+      'Graceful degradation: on exception / timeout / missing model, a custom agent returns empty findings and never blocks the 5 built-in agents',
+      'Traceable & replayable: every expansion/result is written to trajectory JSONL (agent.custom.expanded events), enabling resume from checkpoint'
+    ],
+    confirmDelete: 'Delete custom agent "{name}"?',
+    msg: {
+      toggled: 'Toggle updated',
+      deleted: 'Deleted',
+      updated: 'Changes saved',
+      added: 'Custom agent added',
+      required: 'Please fill in the agent name',
+      fail: 'Operation failed'
+    }
+  }
 }
