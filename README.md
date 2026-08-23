@@ -58,4 +58,4 @@ The console UI supports **中文 / English** switching. Click the language butto
 
 ## License
 
-Open-sourced under the [MIT license](LICENSE). © 2026 code-review-agent contributors.
+Open-sourced under the [MIT license](LICENSE). © 2026 13liyunfei.
